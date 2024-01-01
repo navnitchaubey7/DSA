@@ -1,0 +1,64 @@
+//======================            STACK 
+//// data is stored in LIFO manner last se dalega and last se he uthega 
+//---- PUSH  ---data insert in  the stack-- POP--last data delete from the stack-- PEEK-- get the last data 
+package day3;
+
+public class stackLinkedlist {      //---------------------------CREATING A NODE 
+    static class Node{
+        int data;
+        Node next;
+        Node (int data){
+            this.data =data;
+            next =null;
+        }
+    }                     // ---------------CREATE A PUBLIC CLASS IN WHICH WE USE WE WRITE PUSH POP AND PEEK OPERATION 
+     static class plate{
+       public  static  Node head;
+         public   boolean isEmpty()   //--------------method ----- TO CHECK WEATHER A LIST IS EMPTY OR NOT 
+         {
+           return head==null;
+        }
+         public  void push(int data){   //---------METHOD-----     -----    PUSH 
+            Node newNode =new Node(data);
+            if(isEmpty()){
+                head=newNode;
+return;
+            }
+            newNode.next=head;
+            head=newNode;
+         }
+         public   int pop(){            //----------METHOD -------     ----------POP
+            if(isEmpty()){
+                return -1;
+            }
+            int top=head.data;
+            head=head.next;
+            return top;
+         }
+         public   int  peek(){   // -------------METHOD ---------------PEEK 
+            if(isEmpty()){
+                return -1 ;
+            }
+              return head.data;
+             
+         }
+    }
+    public static void main(String[] args) {
+        plate stackk=new plate();
+        stackk.push(1);
+        stackk.push(23);
+        stackk.push(23);
+        stackk.push(45);
+                                            //------------print the stack 
+        while (!stackk.isEmpty()) {
+            System.out.println(stackk.peek());
+            stackk.pop();
+            
+        }
+    
+
+        
+    }
+
+    
+}
