@@ -1,0 +1,124 @@
+import java.util.LinkedList;
+import java.util.Collection;
+
+
+
+ class Node {
+    
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+ }
+class LL{
+    Node head;
+
+
+
+    // program to add a number in a linked list
+
+
+
+    public void addd(int data){
+        Node newNode=new Node(data);
+        if(head==null){
+            head=newNode;
+            return;
+        }
+        Node currentNode=head;
+        while(currentNode.next!=null){
+            currentNode=currentNode.next;
+        }
+        currentNode.next=newNode;
+
+    }
+
+
+    // program to print a linkd list 
+
+
+    // logic 
+    
+    // head node do 
+    // jabtak node null nahi hota node k data ko print krwa do and node k next ko as a new node dedo
+
+
+
+    public void printListRecursive(Node node) {
+        if (node == null) {
+            // Base case: If the node is null, we've reached the end of the list
+            System.out.println("null");
+            return;
+        }
+         System.out.print("["+node.data+"]"+"->"); // Print the value of the current node
+        printListRecursive(node.next); // Recursively call the function for the next node
+    }
+     public void printLinkedList() {
+        printListRecursive(head); // Start printing from the head of the list
+    }
+
+
+
+
+
+    // reverse a linked list using iteration 
+
+
+
+    public void reverseIterate(){
+        if(head==null|| head.next==null){
+            return;
+        }
+        Node prevNode =head.next;
+        Node currNode=head;
+        while(currNode!=null){
+            Node nextNode=currNode.next;
+            currNode.next=prevNode;
+
+
+            // update
+        
+            prevNode=currNode;
+            currNode=nextNode;
+        }
+        head.next=null;
+        head=prevNode;
+    }
+
+
+    // reverse the linked list using recurrsion 
+
+    public Node reverseReccursion(Node head){
+        if(head==null|| head.next==null){
+            return head;
+        }
+        Node newHead=reverseReccursion(head.next);
+        head.next.next=head;
+        head.next=null;
+        return newHead;
+    }
+    
+}
+
+
+public class linkedLIst {
+    public static void main(String []args){
+        LL list=new LL();
+        list.addd(2);
+
+       
+       list.addd(3);
+       list.addd(3);
+       list.addd(3);
+       list.addd(3);
+       list.addd(3);
+       list.printLinkedList(); 
+       list.reverseIterate();
+       list.printLinkedList();
+      list.head= list.reverseReccursion(list.head);// doubt if list .head cant be written why output is not correct 
+       list.printLinkedList();
+    }
+    
+}
