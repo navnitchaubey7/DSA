@@ -1,0 +1,57 @@
+package dsa;
+import java.util.*;
+public class twoDimensio {
+
+    //-------- CREATE A METHOD FOR FIND THE INDEX OF TARGET ELEMENT 
+
+
+    public static void findNum(int[][]arr,int m,int n,int target){
+      for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            if(arr[i][j]==target){
+                System.out.println("array find at index"+i+"and"+"index"+j);
+  return;
+            }
+        }
+      }
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the dimension of array");
+        int m=sc.nextInt();
+        int n =sc.nextInt();
+        int[][]arr=new int[m][n];
+
+        //------TAKING INPUT FROM THE USER 
+
+
+
+
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                System.out.println("Enter the value of array at index "+i+j);
+                arr[i][j]=sc.nextInt();
+
+            }
+        }
+
+        //-------PRINTING AN ARRAY
+
+
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                  System.out.print(arr[i][j]); 
+            }
+            System.out.println();
+        }
+        System.out.println("ENTER THE TARGET ELEMENT ");
+       int target =sc.nextInt();
+
+
+       //-------CALL THE METHOD 
+
+       
+       findNum(arr, m, n, target); 
+    }
+    
+}
