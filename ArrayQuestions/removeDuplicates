@@ -1,0 +1,24 @@
+package day2;
+// TIME COMPLEXICITY =O(n);
+// lOGIC ---CREATE TWO POINTERS ONE TRAVERSE THE ARRAY SECOND GOES TO THE UNIQUE VALUE 
+public class removeDuplicates{
+    public static int removeDuplicate(int[] arr,int n){
+        int i=0;
+		for(int j=1;j<n;j++){
+			if(arr[i]!=arr[j]){     // ALL UNIQUE VALUES SHIFTED AT THE START OF ARRAY
+				arr[i+1]=arr[j];
+				i++;
+			}
+			
+		}
+		return (i+1);
+    }
+    public static void main(String[] args) {
+        
+        int [] arr={1,2,3,4,5,5,6};
+        int n=arr.length;
+        int result=removeDuplicate(arr, n);
+        System.out.println(result);
+
+    }
+}
