@@ -1,0 +1,60 @@
+// CLASS -- class is a blueprint of an object 
+// Objects---- WE CREATE AN OBJECT OF AN CLASS TO SOLVE REAL WORLD PROBLEMS 
+package day3jan;
+class pen {
+    //------------HERE WE DEFINE THE BLUEPRINT OF A PEN 
+    String color;
+    int price ;
+    String brand;
+    public void write(){       //-----FUNCTIONS DEFINED IN CLASS IS CALLED METHODS
+
+                // --------------------              THIS KEYWORD       -------------------
+        //------THIS KEYWORD TELL THE FUNCTION THAT WHICH OBJECT OF THIS CLASS CALL THE METHOD 
+
+        System.out.println(this.color);
+System.out.println(this.brand);
+System.out.println(this.price);
+        return;
+    }
+
+}
+class Student{       //------ WE CREATE ANOTHER BLUEPRINT OF AN OBJECT CALLED STUDENT 
+    String name;
+    int age;
+    public void printName(){
+        System.out.println(this.name);
+        System.out.println(this.age);
+
+    }
+   
+}
+
+public class OOPS {
+    public static void main(String[] args) {
+
+        //    -------                  OBJECT OF PEN CLASS 
+
+
+
+    pen p1=new pen();  //---WE CREATE A OBJECT OF CLASS PEN AND ALLOCATE THE VALUES
+    //---------OBJECTS HAVE THERE PROPERTIES AND METHODS  
+    p1.brand="pentonic";
+    p1.color="Blue";     //---PROPERTIES      ALSO CALLED           DATA
+    p1.price=10;
+    p1.write();          //----METHOD          ALSO CALLED          MEMBERS
+    pen p=new pen();
+    p.color="red";
+    p.write();
+
+    //---------                       OBJECT OF STUDENT CLASS 
+    Student s=new Student();
+    s.age=34;
+    s.name="navnit";
+    s.printName();
+    Student manish =new Student();
+    manish.name="manish";
+    manish.age=23;
+    manish.printName();
+    }
+    
+}
