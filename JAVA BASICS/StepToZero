@@ -1,0 +1,27 @@
+package day1;
+
+import java.util.*;
+
+public class stepToZero {
+    static int countToZero(int num, int count) {
+        if (num == 0) {
+            return count;
+        }
+        if (num % 2 == 0) {
+            num /= 2;
+            return countToZero(num, count + 1);
+        }
+        num -= 1;
+        return countToZero(num, count + 1);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number ");
+        int num = sc.nextInt();
+        int result = countToZero(num, 0);
+        System.out.println("The total number of steps to reduce this number to zero is " + result);
+
+    }
+
+}
