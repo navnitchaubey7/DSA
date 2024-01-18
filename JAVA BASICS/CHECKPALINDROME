@@ -1,0 +1,30 @@
+package day1;
+
+import java.util.*;
+
+public class palindromeCheck {
+    static int reverse(int num) {
+        if (num == 0) {
+            return 0;
+        }
+        int rem = num % 10; // GET THE LAST NUMBER
+        int digit = (int) (Math.log10(num)); // GET THE NUMBER OF DIGIT IN NUMBER
+        int power = (int) (Math.pow(10, digit)); // CREATING THE POWER TO BE MULTIPLIES
+        return (rem * power) + reverse(num / 10); // DECRESE THE NUMBER LENGTH BY ONE AND CALL THE FNCTION UNTIL NUM
+                                                  // BECOMES ZERO
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number ");
+
+        int num = sc.nextInt();
+        int result = reverse(num);
+        if (num == result) {
+            System.out.println("THE GIVEN NUMBER IS PALINDROME");
+        } else {
+            System.out.println("LOL HOGYA PALINDROME TO HAI HE NHI");
+        }
+    }
+
+}
