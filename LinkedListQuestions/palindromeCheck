@@ -1,0 +1,127 @@
+/* -- 
+LOGIC 
+1.WE FIND THE MIDDLE OF THE LINKED LIST WITH THE HELP OF KACHUA KHARGOSH STRATEGY
+2. FROM THAT MIDDLE WE REVERESE ONE HALF OF THE LIST    -- with the help of this we simply reduce space complexity
+3. AFTER REVERESING WE SIMPLY CHEECK FOR PALINDROME 
+
+*/
+package linkedList;
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class ll {
+    Node head;
+    // ------------------------------------------------- ADD VALUE IN LINKED LIST
+
+    public void add(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        Node curr = head;
+        while (curr.next != null) {
+            curr = curr.next;
+        }
+        curr.next = newNode;
+    }
+    // --------------------------------------------------(PRINT THE LINKED LIST )
+
+    public void printlist(Node head) {
+        if (head.next == null) {
+            System.out.println(head.data);
+            System.out.println("null");
+            return;
+        }
+        System.out.println(head.data);
+        printlist(head.next);
+    }
+
+    // --------------------------------------------------(REVERSE THE LINKED LIST
+    // USING ITERATION )
+    public void reverseIterate() {
+        if (head == null || head.next == null) {
+            return;
+        }
+        Node prevNode = head;
+        Node currNode = head.next;
+        while (currNode != null) {
+            Node nextNode = currNode.next;
+            currNode.next = prevNode;
+            // update
+            prevNode = currNode;
+            currNode = nextNode;
+        }
+        head.next = null;
+        head = prevNode;
+
+    }
+
+    public Node reverse(Node head) {
+        Node prev = null;
+        Node curr = head;
+        while (curr != null) {
+            Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+
+        }
+        return prev;
+    }
+      //---------------------------------------------------------FIND MIDDLE   
+    public Node middle(Node head) {
+        Node kachua = head;
+        Node khargosh = head;
+        while (khargosh.next != null && khargosh.next.next != null) {
+            kachua = kachua.next;
+            khargosh = khargosh.next.next;
+        }
+        return kachua;
+    }
+   //----------------------------------------------------------FUNCTION TO CHECK PALINDROME
+    public boolean isPalindrome(Node head) {
+
+        if (head == null || head.next == null) {
+            return true;
+        }
+
+        Node middlee = middle(head);  
+        Node secHalNode = reverse(middlee.next);
+        Node firstNode = head;
+         //------------------------------------------------------------CHECK FOR PALINDROME
+        while (secHalNode != null) {
+            if (firstNode.data != secHalNode.data) {
+                return false;
+            }
+            firstNode = firstNode.next;
+            secHalNode = secHalNode.next;
+        }
+        return true;
+    }
+
+}
+
+public class palindrome {
+    public static void main(String[] args) {
+        ll list = new ll();
+        list.add(1);
+        list.add(2);
+        list.add(1);
+        list.printlist(list.head);
+        list.reverseIterate();
+        list.printlist(list.head);
+
+        list.isPalindrome(list.head);
+
+    }
+
+}
