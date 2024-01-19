@@ -1,0 +1,44 @@
+// -- LOGIC 
+// MAKE THE USE OF TWO POINTERS INCREMENT EACH BY ONE OR TWO 
+// WHEN SECOND TRAVERSE THE WHOLE LIST RETURN FIRST 
+
+
+// ----------CODE 
+import java.util.*;
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+
+    class ll {
+        Node head;
+
+        public void add(int data) {
+            Node newNode = new Node(data);
+            if (head == null) {
+                head = newNode;
+                return;
+            }
+            Node pointer= head;
+            while (pointer.next != null) {
+                pointer = pointer.next;
+            }
+            pointer.next = pointer;
+            return;
+        }
+
+        public Node middle(Node head) {
+            Node kachua = head;
+            Node khargosh = head;
+            while (khargosh.next != null && khargosh.next.next != null) {
+                khargosh = khargosh.next.next;
+                kachua = kachua.next;
+            }
+            return kachua;
+        }
+    }
+}
