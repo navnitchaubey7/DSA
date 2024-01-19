@@ -1,0 +1,26 @@
+/* Node {
+int data ;
+Node next;
+Node(int data){
+  this.data=data;
+  this.next=null;
+}
+} */
+public class solution {
+public boolean hascycle(Node head){
+  if(head=null||head.next=null){
+    return false;
+  }
+  Node kachua =head;
+  Node khargosh=head;
+  while( kahrgosh!=null&&khargosh.next!=null){
+    if(kachua=khargosh){
+      return true;
+    }
+    khargosh=khargosh.next.next;
+    kachua=kachua.next;
+    
+  }
+  return false;
+}
+}
