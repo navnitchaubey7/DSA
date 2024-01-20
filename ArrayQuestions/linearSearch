@@ -1,0 +1,28 @@
+package Array;
+import java.util.*;
+public class linearSearch {
+ public static  int linearSearch (int n, int num, int []arr){
+        for(int i=0;i<n;i++){
+            if(arr[i]==num){
+                return i;
+            }
+        }
+        return -1;
+    }
+    public static void main(String[] args) {
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.println("Enter the length of an array ");
+            int n=sc.nextInt();
+            int arr[]=new int[n];
+            for(int i=0;i<n;i++){
+                System.out.println("Enter the value of your array at index "+i);
+                arr[i]=sc.nextInt();
+            }
+            System.out.println("Enter the value you want to search ");
+            int num=sc.nextInt();
+            int result =linearSearch(n, num, arr);
+            System.out.println("VALUE FOUND AT INDEX -->"+result);
+        }
+    }
+    
+}
