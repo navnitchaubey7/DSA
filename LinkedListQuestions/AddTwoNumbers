@@ -1,0 +1,57 @@
+ // 
+LOGIC ------ 
+STEP1 CREATE TEMP NODE H1 AND H2 AND GIVE THE VALUE OF HEAD NODE OF TWO LIST 
+STEP 2 CREATE THE NODE IN WHICH RESULT WILL BE STORED 
+STEP 3 CREATE AN TEMPORAY CURRNode for TRAVERSING THE RESULT NODE 
+INITIALIZE THE CARRY WITH 0;
+INITIALIZE THE LOOP WITH CONDITION H1.next!=null,h2.next!=null,carry!=null;
+CHANGE CARRY IN LOOP ;
+IN LOOP CRAETE A NODE AFTER ADDING AND ASSIGN THE NEW VALUE TO THE CURRENT .NEXT
+and UPDATE THE VALUES OF H1 AND H2 
+ATLAST RETURN DUMMYNode.next //
+
+import java.util.* ;
+import java.io.*; 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+    class LinkedListNode {
+        int data;
+        LinkedListNode next;
+        
+        public LinkedListNode(int data) {
+            this.data = data;
+        }
+    }
+
+*****************************************************************/
+
+
+public class Solution {
+    static LinkedListNode addTwoNumbers(LinkedListNode head1, LinkedListNode head2) {
+        LinkedListNode h1=head1;
+        LinkedListNode h2=head2;        // CREATING NODE FOR TRAVERSING THE LIST
+       LinkedListNode dummyNode=new LinkedListNode(-1);
+       LinkedListNode currNode=dummyNode;
+       int carry=0;
+       while(h1!=null  || h2!=null|| carry==1){
+           int sum =carry;
+           if(h1!=null){
+               sum+=h1.data;
+                h1=h1.next;         //UPDATE
+           }
+           if(h2!=null){
+               sum+=h2.data;
+               h2=h2.next;          //UPDATE 
+           }
+             LinkedListNode result =new LinkedListNode(sum%10);
+           carry=sum/10;
+           currNode.next=result;       //ADDING THE VALUES
+           currNode=currNode.next;      // UPDATE VALUES OF RESULTANT
+          
+              }
+      
+       return dummyNode.next;
+    }
+}
