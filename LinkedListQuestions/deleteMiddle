@@ -1,0 +1,86 @@
+Question 
+  Problem statement
+You are given two non-negative numbers 'num1' and 'num2' represented in the form of linked lists.
+
+
+
+The digits in the linked lists are stored in reverse order, i.e. starting from least significant digit (LSD) to the most significant digit (MSD), and each of their nodes contains a single digit.
+
+
+
+Calculate the sum of the two numbers and return the head of the sum list.
+
+
+
+Example :
+Input:
+'num1' : 1 -> 2 -> 3 -> NULL
+'num2' : 4 -> 5 -> 6 -> NULL
+
+Output: 5 -> 7 -> 9 -> NULL
+
+Explanation: 'num1' represents the number 321 and 'num2' represents 654. Their sum is 975.
+
+
+
+
+
+  // ----------------------------------------         SOLUTION        ---------
+  /****************************************************************
+
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+     }
+
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+     }
+
+     Node(int data, Node next)
+     {
+         this.data = data;
+         this.next = next;
+     }
+ };
+
+ *****************************************************************/
+
+public class Solution {
+    public static Node deleteMiddle(Node head) {
+        if (head == null || head.next == null) {
+            // Empty list or list with one node, nothing to delete
+            return null;
+        }
+
+        Node slowPointer = head;
+        Node fastPointer = head;
+        Node prevNode = null;
+
+        // Move the fast pointer twice as fast as the slow pointer
+        while (fastPointer != null && fastPointer.next != null) {
+            prevNode = slowPointer;
+            slowPointer = slowPointer.next;
+            fastPointer = fastPointer.next.next;
+        }
+
+        // Delete the middle node by adjusting the pointers
+        if (prevNode != null) {
+            prevNode.next = slowPointer.next;
+        } else {
+            // If there is no prevNode, the head needs to be updated
+            head = head.next;
+        }
+
+        return head;
+    }
+}
