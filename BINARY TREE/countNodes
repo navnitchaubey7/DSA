@@ -1,0 +1,53 @@
+// TIME COMPLEXICITY O(n)
+package binaryTree;
+
+public class countOfNodes {
+    static class Node {
+        int data ;
+        Node left;
+        Node right;
+        Node(int data){
+            this.data=data;
+            this.right=null;
+            this.left=null;
+        }
+    }
+    static class binaryTree{
+        int i=-1;
+        public Node add(int arr[]){
+            i++;
+            if(arr[i]==-1){
+                return null;
+            }
+            Node newNode=new Node(arr[i]);
+            newNode.left=add(arr);
+            newNode.right=add(arr);
+            return newNode;
+        }
+
+    }
+    public static int count(Node head){
+        if(head==null){
+            return 0;
+        }
+        int left=count(head.left);
+        int right=count(head.right);
+        return left+right+1;
+    }
+    public static int sum(Node head){
+        if(head==null){
+            return 0;
+        }
+        int left=sum(head.left);
+        int right=sum(head.right);
+        return left+right+head.data;
+    }
+    public static void main(String[] args) {
+        int arr[]={1,2,3,-1,-1,5,-1,-1,3,-1,6,-1,-1};
+        binaryTree tree =new binaryTree();
+        Node root=tree.add(arr);
+        int result=count(root);
+    System.out.println(result);
+System.out.println(sum(root));}
+    
+}
