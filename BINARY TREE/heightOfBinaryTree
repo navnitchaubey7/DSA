@@ -1,0 +1,50 @@
+package binaryTree;
+
+public class heightOfBT {
+    static class Node {
+        int data;
+        Node left;
+        Node right;
+
+        Node(int data) {
+            this.data = data;
+            this.right = null;
+            this.left = null;
+        }
+    }
+
+    static class binaryTree {
+        int i = -1;
+
+        public Node add(int arr[]) {
+            i++;
+            if (arr[i] == -1) {
+                return null;
+            }
+            Node newNode = new Node(arr[i]);
+            newNode.right = add(arr);
+            newNode.left = add(arr);
+            return newNode;
+          
+        }
+    }
+
+    public static int height(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = height(root.left);
+        int right = height(root.right);
+        int height = Math.max(left, right) + 1;
+        return height;
+    }
+
+    public static void main(String[] args) {
+
+        int[] arr = { 1, 2, 3, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
+        binaryTree tree = new binaryTree();
+        Node root = tree.add(arr);
+        System.out.println(height(root));
+
+    }
+}
