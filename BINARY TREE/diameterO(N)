@@ -1,0 +1,66 @@
+package binaryTree;
+
+public class diameter2 {
+    static class Node {
+        int data;
+        Node left;
+        Node right;
+
+        Node(int data) {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    static class binaryTree {
+        static int i = -1;
+
+        Node add(int arr[]) {
+            i++;
+            if (arr[i] == -1) {
+                return null;
+            }
+            Node newNode = new Node(arr[i]);
+            newNode.left = add(arr);
+            newNode.right = add(arr);
+            return newNode;
+        }
+    }
+
+    static class treeInfo {
+        int ht;
+        int diam;
+
+        treeInfo(int data, int diameter) {
+            ht = data;
+            diam = diameter;
+        }
+    }
+
+    public static treeInfo diametre(Node root) {
+        if (root == null) {
+            treeInfo result=new treeInfo(0, 0);
+            return result;
+        }
+        treeInfo left = diametre(root.left);
+        treeInfo right = diametre(root.right);
+        int height = Math.max(left.ht, right.ht) + 1;
+        int diam1 = left.diam;
+        int diam2 = right.diam;
+        int diam3 = left.ht + right.ht + 1;
+        int diameter = Math.max(diam3, Math.min(diam1, diam2));
+        treeInfo myinfo = new treeInfo(height, diameter);
+        return myinfo;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 1, 2, 3, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
+        binaryTree tree = new binaryTree();
+        Node root = tree.add(arr);
+        System.out.println(root.data);
+        System.out.println(diametre(root).diam);
+
+    }
+
+}
