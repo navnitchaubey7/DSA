@@ -1,0 +1,33 @@
+package binaryTree;
+
+import java.util.*;
+
+public class binarySearch {
+    public static int binarySearch(int arr[], int target, int si, int ei) {
+        int mid = si + (ei - si) / 2; // DIVIDE THE ARRAY
+        if (arr[mid] == target) { // BASE CONDITION
+            return mid;
+        }
+        if (arr[mid] < target) {
+            return binarySearch(arr, target, mid + 1, ei); // SEARCH IN RIGHT SIDE OF ARRAY
+        } else {
+            return binarySearch(arr, target, si, mid - 1); // SEARCH IN LEFT SIDE OF AN ARRAY
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the lenght of the array ");
+        int length = sc.nextInt();
+        int arr[] = new int[length];
+        for (int i = 0; i < length; i++) {
+            System.out.println("Enter the value of array at index -->" + i);
+            arr[i] = sc.nextInt();
+        }
+        System.out.println("Enter the element you want to search ");
+        int target = sc.nextInt();
+        int result = binarySearch(arr, target, 0, length - 1);
+        System.out.println("YOUR ELEMENT FOUND AT INDEX " + result);
+    }
+
+}
