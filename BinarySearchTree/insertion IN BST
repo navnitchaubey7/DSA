@@ -1,0 +1,73 @@
+//  INORDER TRAVERSAL OF BST GIVES THE SORTED SEQUENCE OF ARRAY 
+// SKEWED TREE = NON BALANCED TREE (mtlab ek h direction me jae jara h tree means 0O(n)==O(h))
+// where n is node of the tree and h height of the tree
+// Whenever we solve BST we solve the with help of RECURRSION (divide problem into subproblem)
+
+
+package binaryTree;
+
+public class binarySearchTree {
+    static class Node {
+        int data;
+        Node left;
+        Node right;
+
+        Node(int data) {
+            this.data = data;
+        }
+    }
+    // LOGIC
+    // 1.STARTING ME ROOT KO VALUE ASSIGN KRDO
+    // 2.AGR ROOT ME VALUE HAI TO ROOT K LEFT YE RIGHT ME JAKAR ACCORDING TO
+    // CONDITIONS VALUE INSERT KRWADO
+    // 3.AT LAST ROOT KO RETURN KRWADO
+
+    public static Node insert(Node root, int val) {
+
+        // 1.STARTING ME ROOT KO VALUE ASSIGN KRDO
+
+        if (root == null) {
+            root = new Node(val);
+            return root;
+        }
+
+        // 2.AGR ROOT ME VALUE HAI TO ROOT K LEFT YE RIGHT ME JAKAR ACCORDING TO
+        // CONDITIONS VALUE INSERT KRWADO
+
+        if (root.data > val) {
+            root.left = insert(root.left, val);
+        } else {
+            root.right = insert(root.right, val);
+        }
+
+        // 3.AT LAST ROOT KO RETURN KRWADO
+
+        return root;
+    }
+
+      // INORDER TRAVERSAL FOR PRINTING THE BST 
+
+      
+    public static void inorder(Node root) {
+        if (root == null) {
+            return;
+        }
+        inorder(root.left);
+        System.out.print(root.data);
+        inorder(root.right);
+    }
+
+    public static void main(String[] args) {
+        int values[] = { 5, 1, 3, 4, 2, 7, 6 };
+        Node root = null;
+
+        // -- EK FOR LOOP CHALWADE OR ARRAY K HARE EK ELEMENT KO INPUT DETA JA
+
+        for (int i = 0; i < values.length; i++) {
+            root = insert(root, values[i]);
+        }
+        inorder(root);
+
+    }
+
+}
