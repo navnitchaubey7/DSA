@@ -1,0 +1,72 @@
+package BST;
+
+public class insertion {
+
+    static class Node {
+        int data;
+        Node left;
+        Node right;
+
+        Node(int data) {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    public static Node add(Node root, int data) {
+        if (root == null) {
+            root = new Node(data);
+            return root;
+        }
+        if (data < root.data) {
+            root.left = add(root.left, data);
+        } else {
+            root.right = add(root.right, data);
+        }
+        return root;
+    }
+
+    public static void inorder(Node root) {
+        if (root == null) {
+            return;
+        }
+        inorder(root.left);
+        System.out.print(root.data);
+        inorder(root.right);
+    }
+
+    public static boolean search(Node root, int key) {
+        if(root==null){
+            return false;
+        }
+        if (root.data == key) {
+            return true;
+        }else if(root.data < key) {
+            return search(root.right, key);
+        } 
+    else{
+            return search(root.left, key);
+        }
+        
+
+    }
+
+    public static void main(String[] args) {
+        int values[] = { 5, 1, 3, 4, 2, 7, 6 };
+        Node root = null;
+        for (int i = 0; i < values.length; i++) {
+            root = add(root, values[i]);
+        }
+        inorder(root);
+        int key =57;
+        boolean result =search(root, key);
+        if(search(root, key)){
+            System.out.println(" MIL GYA HAI ELEMENT RO MAT");
+        }else {
+            System.out.println("NHI MILA HAI DUSRA SEARCH KR ");
+        }
+
+    }
+
+}
