@@ -1,0 +1,100 @@
+package BST;
+import java.util.*;
+
+public class deleteInBST {
+    static class Node {
+        int data;
+        Node left;
+        Node right;
+
+        Node(int data) {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    public static Node add(Node root, int data) {
+        if (root == null) {
+            return new Node(data);
+        }
+        if (root.data < data) {
+            root.right = add(root.right, data);
+        } else {
+            root.left = add(root.left, data);
+        }
+        return root;
+    }
+
+    public static Node delete(Node root, int target) {
+        if (root.data < target) {
+            root.right = delete(root.right, target);
+        } else if (root.data > target) {
+            root.left = delete(root.left, target);
+        } else {
+            // CASE 1          
+                                                      //  LOGIC JAB ROOT LEAVE HO TO ROOT K BADLE NULL RETURN KRDO
+            if (root.left == null && root.right == null) {
+                return null;
+            }
+            // CASE 2
+                                          // LOGIC JAB EK SIDE NULL H TO DUSRI SIDE TO AGLE NODE KA DATA RETURN KRDE
+                                            // INSTEAD USS ROOT KO RETURN KRE 
+            if (root.right == null) {
+                return root.left;
+            } else if (root.left == null) {
+                return root.right;
+            }
+            // CASE 3
+                                        // LOGIC INORDER SUCCESSOR NIKAL JO KI RIGHTTREE KA LEFTMOST Node HOGA 
+                                        //THEN DELETING ROOT K DATA ME SUCCESSOR KA DATA DALWADE 
+                                        // AND SUCCESSOR K DATA KO DLT KRDE  
+            Node io = inOrderSuccessor(root.right);
+            root.data = io.data;
+            root.right = delete(root.right, io.data);
+        }
+        return root;
+    }
+     
+                                                          // PROGRAM TO FIND THE INORDER SUCCESSOR 
+
+
+    public static Node inOrderSuccessor(Node root) {
+        while (root.left != null) {
+            root = root.left;
+        }
+        return root;
+    }
+
+                                        // PROGRAM TO PRINT THE INORDER SEQUENCE 
+
+
+    public static void inorder(Node root) {
+        if (root == null) {
+            return;
+        }
+        inorder(root.left);
+        System.out.print(root.data);
+        inorder(root.right);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int arr[] = { 5, 1, 3, 4, 2, 7 };
+                                                              // INITIALIZE ROOT WITH NULL
+                                                              
+        Node root = null;
+        for (int i = 0; i < arr.length; i++) {
+            root = add(root, arr[i]);
+        }
+        System.out.println("YOUR INORDER SEQUENCE IS : ");
+        inorder(root);
+        System.out.println();
+        System.out.println("ENTER THE TARGET NUMBER :");
+        int target =sc.nextInt();
+        delete(root,target);
+        System.out.println("NOW YOUR INORDER SEQUENCE WIL BE :");
+        inorder(root);
+
+    }
+}
