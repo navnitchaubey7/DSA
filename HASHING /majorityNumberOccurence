@@ -1,0 +1,28 @@
+/*
+ STEP 1 CREATE A HASHMAP 
+STEP 2 ITERATE THE ARRAY AND PUT IN THE HASHMAP 
+STEP 3 PRINT THE KEY HAVING OCCURNCE GRETER THAN N/3
+*/
+import java.util.*;
+public class majority{
+    public static void majorityy(int arr[]){
+        HashMap<Integer,Integer> map=new HashMap<>();
+        int n=arr.length;
+        for(int i=0;i<n;i++){
+            if(map.containsKey(arr[i])){
+                map.put(arr[i], map.get(arr[i])+1);
+            }else{
+                map.put(arr[i],1);
+            }
+        }
+        for(int keys:map.keySet()){
+            if(map.get(keys)>n/3){
+                System.out.println(keys);
+            }
+        }
+    }
+    public static void main(String[] args) {
+        int arr[]={1,1,2,5,4,1,2,5,4,1,1,2,2,2,2,2,2,1,1,1,1,2,1,2};
+        majorityy(arr);
+    }
+}
