@@ -1,0 +1,150 @@
+// HASHMAP IS AN UNORDERED DATASET WHICH IS USED TO STORE KEY VALUE PAIR 
+// // HASHMAP WILL BE IMPLEMENTED USING ARRAY OF LINKED LIST
+import java.util.*;
+
+public class practice {
+    static class HashMap<K, V> { // ALSO KNOWN AS GENERICS
+        // -----------------------------------------------CREATING NODE OF THE LINKED
+        // ----------------------------------------------LIST IN WHICH WE STORE KEY VALUE PAIR
+        private class Node {
+            K key;
+            V value;
+
+            public Node(K key, V value) {
+                this.key = key;
+                this.value = value;
+            }
+        }
+
+        public int N;// -----------------------------------------------LENGTH OF ARRAY
+        private int n;// -----------------------------------------------LENGTH OF LINKED LIST
+        private LinkedList<Node> arr[];// -----------------------------------------------CREATE AN ARRAY OF LL
+
+        public HashMap() {
+            this.N = 4;
+            this.arr = new LinkedList[N];// -----------------------------------------------INITIALIZE THE ARRAY
+            for (int i = 0; i < N; i++) {// -----------------------------------------------INITIALIZE EACH NODE WITH
+                                         // NULL VALUE
+                this.arr[i] = new LinkedList<>();
+            }
+
+        }
+
+        private int HashFunction(K key) {// -----------------------------------------------BLACK BOX PUNCTION
+            int result = key.hashCode();
+            int bi = Math.abs(result) % N;
+            return bi;
+        }
+
+        private int searchInLL(int bi, K key) {// -----------------------------------------------SEARCH IN LL
+            LinkedList<Node> ll = arr[bi];
+            for (int i = 0; i < ll.size(); i++) {
+                if (ll.get(i).key == key) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        private void rehassing() {// -----------------------------------------------REHASSING IF ARRAY OUT OF
+                                  // BOUND
+            LinkedList<Node> oldarr[] = arr;
+            arr = new LinkedList[N * 2];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = new LinkedList<>();
+            }
+            for (int i = 0; i < oldarr.length; i++) {
+                LinkedList<Node> ll = oldarr[i];
+                for (int j = 0; j < ll.size(); j++) {
+                    Node node = ll.get(j);
+                    put(node.key, node.value);
+                }
+            }
+        }
+
+        public void put(K key, V value) {// -----------------------------------------------PUT THE VALUE
+            int bi = HashFunction(key); // THIS IS MY BLACKBOX
+            int di = searchInLL(bi, key); // if di value is 0 or greater di esist otherwise -1 not exist and we create a
+                                          // new NODE
+
+            if (di == -1) { // ==== KEY DOESNOT EXIST
+                arr[bi].add(new Node(key, value)); // ADDING A NEW NODE IN THE LINKED LIST
+                n++; // OVS SI BAAT HAI NEW NODE ADD KARI H TO NUMBER OF NODE BHI TO INCREASE KRO
+
+            } else {
+                Node node = arr[bi].get(di);
+                node.value = value;
+            }
+            double lemda = (double) n / N;
+            if (lemda > 2.0) {
+                rehassing();
+            }
+        }
+
+        private V get(K key) {// -----------------------------------------------GET THE VALUE
+            int bi = HashFunction(key);
+            int di = searchInLL(bi, key);
+            if (di == -1) {
+                return null;
+            } else {
+                return arr[bi].get(di).value;
+            }
+
+        }
+
+        private void remove(K key) {// -----------------------------------------------REMOVE THE VALUE
+            int bi = HashFunction(key);
+            int di = searchInLL(bi, key);
+            if (di == -1) {
+                return;
+            } else {
+                arr[bi].remove(di);
+                n--;
+            }
+        }
+
+        public boolean containsKey(K key) {// -----------------------------------------------SEARCH FOR THE VALUE
+            int bi = HashFunction(key);
+            int di = searchInLL(bi, key);
+            if (di == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        public boolean isEmpty() {// ----------------------------------------------- isempty
+            return n == 0;
+        }
+
+        public ArrayList<K> keySets() {// -----------------------------------------------KEYSETS
+            ArrayList<K> keys = new ArrayList<>();
+            for (int bi = 0; bi < arr.length; bi++) {
+                LinkedList<Node> ll = arr[bi];
+                for (int di = 0; di < ll.size(); di++) {
+                    
+                    keys.add(ll.get(di).key);
+                }
+            }
+            return keys;
+        }
+
+    }
+
+    public static void main(String args[]) {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("my", 458);
+        map.put("navnit", 12);
+        map.put("manish", 21);
+        System.out.println(map.get("my"));
+
+        System.out.println(map.containsKey("manish"));
+        System.out.println(map.keySets());
+        ArrayList<String> keys = map.keySets();
+
+        for (int i = 0; i < keys.size(); i++) {
+            System.out.println("[ " + keys.get(i) + " , " + map.get(keys.get(i)) + " ]");
+            map.remove("navnit");
+        }
+    }
+}
