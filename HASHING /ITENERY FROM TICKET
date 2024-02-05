@@ -1,0 +1,46 @@
+/* ABOUT PROBLEM 
+SINGLE TICKET FROM SOURCE TO DESTINATION 
+NO LOOPS ,, PLANE TICKET GIVEN IN FORM OF HASHMAP 
+STEP 1 FIND START 
+STEP 2 FIND FROM 
+STEP 3 PRINT FROM AND TO AND MAKE TO AS OUR NEW FROM 
+APPROACH REVERSE THE MAP COMPARE THE KEYS AND WHICH IS NOT SAME RETURN AS A KEY 
+STEP 4 PRINT ITERAY
+WHILE(tick.containing(start))
+print satrting 
+newstart =tick.get(start)
+print start
+*/
+import java.util.*;
+public class itenerary {
+    public static String getStart(HashMap<String,String> ticks){
+        HashMap<String,String> revMap=new HashMap<>();
+        for(String str:ticks.keySet()){
+            revMap.put(ticks.get(str), str);
+        }
+
+        for(String ite:ticks.keySet()){
+            if(!revMap.containsKey(ite)){
+                return ite;
+            }
+        }
+        return null;
+    }
+    
+   
+  public static void main(String[] args) {
+    HashMap<String,String> tickets=new HashMap<>();
+    tickets.put("chennai", "bengaluru");
+    tickets.put("mumbai", "delhi ");
+    tickets.put("goa", "chennai");
+    tickets.put("delhi", "goa");
+   String start  = getStart(tickets);
+
+   while(tickets.containsKey(start)){
+    System.out.println(start);
+    start=tickets.get(start);
+   }
+   System.out.println(start);
+   
+  }  
+}
