@@ -1,0 +1,38 @@
+
+/*
+STEP 1 CREATE A HASHSET AND INSERT ON ARRAY IN THE SET 
+STEP 2 ITERATE OVER FIRST ARRAY AND ADD IT TO SET
+STEP 3 ITERATE 2ND ARRAY AND COMPARE IT WITH SET ELEMENT 
+STEP 4 IF MATCH EXIST INCRESE COUNT TO 1 AND REMOVE THAT ELEMENT FROM THE SET SO THAT NO FURTHER MATCH WILL 
+     OCCURS WITH SAME VALUE 
+STEP 5 AT LAST RETURN COUNT AND PRINT VALUES 
+*/
+import java.util.*;
+
+public class intersection {
+    public static int intersection(int arr[], int prr[]) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int i = 0; i < arr.length; i++) {
+            set.add(arr[i]);
+        }
+        int count = 0;
+        for (int i = 0; i < prr.length; i++) {
+            if (set.contains(prr[i])) {
+                System.out.print(prr[i]);
+                count++;
+                set.remove(prr[i]);
+            }
+        }
+        System.out.println();
+        return count;
+    }
+
+    public static void main(String args[]) {
+        int arr[] = { 1, 2 };
+        int prr[] = { 1, 2, 5, 4, 8, 25, 6, 9, 4 };
+        int result = intersection(arr, prr);
+        System.out.println(result);
+
+    }
+
+}
