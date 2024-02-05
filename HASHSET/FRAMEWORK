@@ -1,0 +1,51 @@
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class hash {
+    public static void main(String args[]) {
+        HashSet<Integer> set = new HashSet<>();
+        // INSERT
+        set.add(1);
+        set.add(2);
+        set.add(3);
+        set.add(45);
+        set.add(78);
+        set.add(1);// not stored because only unique elements are addded
+
+        // SIZE
+        System.out.println("total number of elements are " + set.size());
+
+        // SEARCH -- contains function
+        if (set.contains(1)) {
+            System.out.println("han  mil gya ");
+        }
+        if (!set.contains(16)) {
+            System.out.println("SAHI PAKDE HAI NHI MILA ");
+        }
+
+        // DELETE .REMOVE
+        set.remove(1);
+        if (!set.contains(1)) {
+            System.out.println("we deleted 1");
+        }
+
+        // SIZE
+        System.out.println("total number of elements are " + set.size());
+
+        // PRINT ALL THE ELEMENTS
+        System.out.println(set);
+
+        // ITERATOR IN HASHSETS -- VARIABLE WHICH TRAVERSE THE ELEMENTS OF SET
+        Iterator it = set.iterator();
+
+        // Iterator conatains two Functions
+        // 1. hasNext == return true or false wheather the set have element or not
+        // 2. next == initially it object of the iterator point to next
+        // HASHSET DO NOT GURRENTEE THE ITERATION ORDER OF THE ELEMENT
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+
+    }
+
+}
