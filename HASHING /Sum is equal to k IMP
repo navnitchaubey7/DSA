@@ -1,0 +1,36 @@
+/*  
+BRUT FORCE IS THROUGHT ARRRAY AND TIME COMPLEXITY IS NEARBY O(n2)
+LOGIC 
+STEP 1 CREATING A HASHMAP WITH SUM AND ITS FREQUENCY 
+STEP 2 INITIAZE THE VALUE OF ANSWER AND SUM OF N ELEMENTS AS =0
+STEP 3 TRAVERSE THE ARRAY ADD VALUE OF ARRAY TO THE SUM  
+STEP 4 THEN IF SUM-K EXIST IN HASHMAP ADD ITS FREQUEMCY TO HASHMAP 
+STEP 5 AND THEN APPLY A CONDITPIONAL STATEMENT THAT 
+         IF SUM EXIST IN THE MAP INCREASE ITS FREQUENCY OTHERWISE OR ELSE ADD IT TO THE MAP WITH FREQUENCY 1
+STEP 6 AT LST PRINT THE ANSWER STORED
+*/
+import java.util.*;
+
+public class SumK {
+    public static void main(String args[]) {
+        int arr[] = { 10, 2, -2, -20, 10 };
+        int k = -10;
+        int ans = 0;
+        int sum = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+            if (map.containsKey(sum - k)) {
+                ans += map.get(sum - k);
+            }
+            if (map.containsKey(sum)) {
+                map.put(sum, map.get(sum) + 1);
+            } else {
+                map.put(sum, 1);
+            }
+        }
+        System.out.println(ans);
+    }
+
+}
