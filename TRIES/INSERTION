@@ -1,0 +1,51 @@
+/*
+also known as ,PREFIX TREE ,dst DIGITAL SEARCH TREE  ,retrieval tree 
+prefix there and their have common prefix is the.
+A ,AP,APP,APPL IS PREFIX OF APPLE 
+TRIES DS IS A TREE HAVING MORE THAN 2 CHILDREN 
+ASLSO KNOWN AS K-ARRY KEY
+WHERE END OF WORD IS MARKED AS LEAVES 
+
+IMP 
+FOR CRETING NODES WE CREATE 
+STATIC CLASS Node {
+    Node [] arr// having values at each level as 26 characters of a-z(int data will not be decalared ,index k hisab se word pehchan lega )
+    EVERY LEVEL HAVE THEIR OWN ARRAY JO YE BATATA H NEXT NODE KON KON SE CHARACTERS KI H 
+    boolean end of word // JIS BHI NODE KI ME BAAT KR RHA HU KYA WO KHATM HO RHA H YA NHI 
+}
+ */
+public class Theory {
+    static class Node {
+        Node children[];
+        boolean eow;
+
+        Node() {
+            children = new Node[26];
+            eow = false;
+        }
+    }
+
+    static Node root = new Node();
+
+    public static void insert(String word) {
+
+        for (int i = 0; i < word.length(); i++) {
+            int ind = word.charAt(i) - 'a';
+            if (root.children[ind] == null) {
+                root.children[ind] = new Node();
+            }
+            if (i == word.length() - 1) {
+                root.eow = true;
+            }
+            root = root.children[ind];
+        }
+    }
+
+    public static void main(String[] args) {
+        String words[] = { "the", "a", "there," };
+        for (int i = 0; i < words.length; i++) {
+            insert(words[i]);
+        }
+
+    }
+}
