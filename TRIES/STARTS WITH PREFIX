@@ -1,0 +1,51 @@
+public class startWord {
+    static class Node {
+        Node children[];
+        boolean eow;
+
+        Node() {
+            children = new Node[26];
+            for (int i = 0; i < 26; i++) {
+                children[i] = null;
+            }
+            eow = false;
+        }
+    }
+
+    static Node root = new Node();
+
+    public static void insert(String word) {
+        Node currNode = root;
+        for (int i = 0; i < word.length(); i++) {
+            int index = word.charAt(i) - 'a';
+            if (currNode.children[index] == null) {
+                currNode.children[index] = new Node();
+            }
+            if (i == word.length() - 1) {
+                currNode.eow = true;
+            }
+            currNode = currNode.children[index];
+        }
+    }
+
+    public static boolean startwith(String key) {
+        Node curr = root;
+        for (int i = 0; i < key.length(); i++) {
+            int index = key.charAt(i) - 'a';
+            if (curr.children[index] == null) {
+                return false;
+            }
+            curr = curr.children[index];
+        }
+        return true;
+    }
+
+    public static void main(String args[]) {
+        String arr[] = { "my", "name", "is", "nahisdfgaghed", "pta" };
+        for (int i = 0; i < arr.length; i++) {
+            insert(arr[i]);
+        }
+        System.out.println(startwith("my"));
+    }
+
+}
