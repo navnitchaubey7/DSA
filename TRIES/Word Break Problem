@@ -1,0 +1,85 @@
+/*
+QUESTION -- GIVEN INPUT OF STRING AND A DICTIONARY OF WORD 
+BASICALLY WE HAVE TO BREAK THE KEY STRING AND SEARCH IN THE TRIES 
+LIKE WE HAVE KEY ={ilikesamsung}
+
+LOGIC 
+--- we divide it as i like samsung 
+--- apni key k chote tukde krne h jo tries me ho
+--- ekek index pe jake cut lagane wale h jisse sari possible substring mil jaengi
+---like we break the samsung as sam and sung as result is false so we don,t break
+---------------------------------------APPROACH 
+--- FIND ALL POSSIBLE PATHS 
+LOOP CHALAO JO EK EK HISSE PE JAKE CUT LAGAEGA FIRST AND SECOND HISSSE SE RECURRSIVELY TRUE LENA H
+---
+ */
+public class search {
+    static class Node {
+        Node children[];
+        boolean eow;
+
+        Node() {
+            children = new Node[26];
+            for (int i = 0; i < 26; i++) {
+                children[i] = null;
+            }
+            eow = false;
+        }
+    }
+
+    static Node root = new Node();
+
+    public static void insert(String word) {
+        Node curr = root;
+        for (int i = 0; i < word.length(); i++) {
+            int ind = word.charAt(i) - 'a';
+            if (curr.children[ind] == null) {
+                curr.children[ind] = new Node();
+            }
+            curr = curr.children[ind];
+        }
+        curr.eow = true; // Move this line outside the loop
+    }
+
+    public static boolean search(String key) {
+        Node curr = root;
+        for (int i = 0; i < key.length(); i++) {
+            int index = key.charAt(i) - 'a';
+            if (curr.children[index] == null) {
+                return false;
+            }
+            curr = curr.children[index];
+            if (curr.eow == false && i == key.length() - 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean wordBreak(String key) {
+        if (key.length() == 0) {
+            return true;
+        }
+        for (int i = 1; i <= key.length(); i++) {
+            String first = key.substring(0, i);
+            String second = key.substring(i);
+            if (search(first) && wordBreak(second)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void main(String args[]) {
+        String arr[] = { "i", "like", "sam", "samsung", "mobile" };
+        String key = "ilikesamsung";
+
+        for (int i = 0; i < arr.length; i++) {
+            insert(arr[i]);
+        }
+        System.out.println(wordBreak(key));
+
+        System.out.println(search("this"));
+        System.out.println(search("navnit"));
+    }
+}
