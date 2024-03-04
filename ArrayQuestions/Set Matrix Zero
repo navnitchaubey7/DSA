@@ -1,0 +1,63 @@
+import java.util.*;
+
+public class practice {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+
+        // ---------------------------------------CREATING AN EXTRA SPACE /MATRIX FOR STORE THE VALUES 
+
+        System.out.println("enter the size ");
+        int m = sc.nextInt();
+        System.out.println("enter the size");
+        int n = sc.nextInt();
+
+        // --------------------------------------- CREATING THE MATRIX 
+
+        int arr[][] = new int[m][n];
+        int row[] = new int[m];
+        int col[] = new int[n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        // --------------------------------------- TRAVERSING THE MATRIX AND STORE THE VALUES IN  THE EXTRA SPACE
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+        // ---------------------------------------IN EXTERNAL MATRIX WHERE 1 IS STORED WE REPLACE THAT POSITOIN
+        // ---------------------------------------WITH 0 IN ORIGINAL MATRIX
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (arr[i][j] == 0) {
+                    row[i] = 1;
+                    col[j] = 1;
+                }
+            }
+        }
+
+        // ---------------------------------------PRINT THE UPDATED MATRIX 
+        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (row[i] == 1 || col[j] == 1) {
+                    arr[i][j] = 0;
+                }
+            }
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+    }
+
+}
