@@ -1,0 +1,47 @@
+import java.util.*;
+
+public class Solution {
+    public static List<Integer> nextGreaterPermutation(List<Integer> A) {
+        int n = A.size();
+        int index = -1;
+
+        for (int i = n - 2; i >= 0; i--) {
+            if (A.get(i) < A.get(i + 1)) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            Collections.reverse(A);
+        } else {
+            for (int i = n - 1; i > index; i--) {
+                if (A.get(i) > A.get(index)) {
+                    // Swap A[i] and A[index]
+                    int temp = A.get(i);
+                    A.set(i, A.get(index));
+                    A.set(index, temp);
+                    break;
+                }
+            }
+
+            Collections.reverse(A.subList(index + 1, n));
+        }
+
+        return A;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> input ;
+System.out.println("Enter the size of the list");
+int n =sc.nextInt();
+for(int i=0;i<n;i++){
+input.set(i)=sc.nextInt();
+}
+        List<Integer> result = nextGreaterPermutation(input);
+
+        for (int num : result) {
+            System.out.println(num);
+        }
+    }
+}
