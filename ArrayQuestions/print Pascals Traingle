@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Solution {
+
+    public static int[] getRow(int row) {
+        int[] list = new int[row];
+        list[0] = 1;
+        long ans = 1;
+
+        for (int col = 1; col < row; col++) {
+            ans = ans * (row - col) / col;
+            list[col] = (int) ans;
+        }
+        return list;
+    }
+
+    public static int[][] pascalTriangle(int N) {
+        int[][] listt = new int[N][];
+
+        for (int i = 1; i <= N; i++) {
+            listt[i - 1] = getRow(i);
+        }
+
+        return listt;
+    }
+public static void main(String args[]){
+int list[][]=pascalTraingle(6);
+// HERE U CAN PRINT THE LIST OF LISTS 
+
+    
+}
+
