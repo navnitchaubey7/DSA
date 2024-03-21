@@ -1,0 +1,39 @@
+package Algorithms;
+// TIME COMPLEXICITY- O(n2)
+// SPACE COMPLEXICITY-O(1)
+// logic -TRAVERSE THE ARRAY FROM LEFT TO RIGHT COMPARE THE TWO ELEMENT AND PUT THE LARGEST TO THE RIGHT 
+// ONE TRAVERSAL PLACED ONE CORRECT ELEMENT TO THE LAST SO WE HAVE TO DO N2 TRAVERSALS 
+//Total no. of passes: n-1
+//Total no. of comparisons: n*(n-1)/2
+import java.util.*;
+public class bubbleSort {
+    public static void bubble(int arr[]){
+        int n=arr.length;
+        for(int i=0;i<n-1;i++){
+            for(int j=0;j<n-i-1;j++){
+                if(arr[j]>arr[j+1]){
+                    int temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
+            }
+        }
+    }
+
+    public static void main(String args[]){
+        System.out.println("Enter the size of the array ");
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+            System.out.println("Enter the value of array at index "+i);
+            arr[i]=sc.nextInt();
+        }
+        bubble(arr);
+        System.out.println("Sorted array is : ");
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+    
+}
