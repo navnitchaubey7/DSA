@@ -1,0 +1,58 @@
+/* -- QUICK Sort 
+Pivovt -central point jiske around saari cheeze rotate hoti h 
+(HUM PIVOT KISI KO BHI MAAN SAKTE H )
+1-random 
+2-medium 
+3-1st elemt 
+4-last element 
+--ALGORITHM (Pivot as a last element)
+-PIVOT BNALO LAST ELEMNT KO ,PIVOT KO SAHI JAGH DAAL DO 
+PIVOT SE CHOTE PIVOT K LEFT ME AND BADE PIVOT SE RIGHT 
+YE KAAM KARTE RAHO RECCURSIVE CALL LAGAKR 
+Partition - rotating elements according to the pivot
+Time Complexicity -worst-O(n2)(OCCURS WHEN PIVOT IS ALWAYS THE LASRGEST OR THE SMALLEST ELEMENT)
+Average-(nlogn)*/
+
+// ---------------                       RECCURSIVE METHOD 
+
+
+package Algorithms;
+public class QuickSort{
+    public static int partition(int arr[],int low,int high){
+        int pivot=arr[high];
+        int i=low-1;
+        for(int j=low;j<high;j++){
+            if(arr[j]<pivot){
+                i++;
+                //SWAPPING arr[i] and arr[j]
+                int temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+            }
+        }
+        i++;
+        //SWAP arr[i] and pivot JO HAI ARR[HIGH] PAR 
+        int temp=arr[i];
+        arr[i]=pivot;
+        arr[high]=temp;
+        return i;
+    
+    }
+    public static void quickSort(int arr[],int low ,int high){
+        if(low<high){
+        int pindx=partition(arr,low,high);
+        quickSort(arr, low, pindx-1);
+        quickSort(arr, pindx+1, high);
+        }
+    }
+    public static void main(String[] args) {
+        int[] arr={1,5,4,3};
+        int n=arr.length;
+        quickSort(arr,0,n-1);
+        for(int i=0;i<n;i++){
+            System.out.print(arr[i]);
+        }
+    }
+}
+
+
